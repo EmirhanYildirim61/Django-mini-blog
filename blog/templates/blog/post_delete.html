@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Yazıyı Sil</title>
+        <style>
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; }
+            .confirmation-box { border: 2px solid #dc3545; padding: 20px; border-radius: 8px; background: #fff8f8; }
+            .button-delete { background: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+            .button-cancel { display: inline-block; margin-left: 10px; text-decoration: none; color: #555; }
+        </style>
+    </head>
+    <body>
+        <div class="confirmation-box">
+            <h1>Silme Onayı</h1>
+            <p>
+                "<strong>{{ post.title }}</strong>" başlıklı yazıyı kalıcı olarak silmek istediğinizden emin misiniz?
+            </p>
+            <p>Bu işlem geri alınamaz!</p>
+
+            <form method="POST">
+                {% csrf_token %} 
+                <button type="submit" class="button-delete">Evet, Sil</button>
+                
+                <a href="{% url 'post_detail' post.pk %}" class="button-cancel">
+                    İptal
+                </a>
+            </form>
+        </div>
+    </body>
+</html>

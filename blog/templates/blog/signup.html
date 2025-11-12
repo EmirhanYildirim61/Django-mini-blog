@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Kayıt Ol</title>
+        <style>
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; }
+            form { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+            form li { list-style-type: none; margin-bottom: 10px; } /* UserCreationForm 'li' kullanır */
+            form label { display: block; margin-bottom: 5px; font-weight: bold; }
+            form input { width: 95%; padding: 10px; font-size: 1em; border: 1px solid #ddd; }
+            button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        </style>
+    </head>
+    <body>
+        <h1>Kayıt Ol</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </body>
+</html>

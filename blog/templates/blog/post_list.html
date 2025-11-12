@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mini-Blogum</title>
+        <style>
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; }
+            article { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+            h1 { color: #333; }
+            h2 { color: #555; }
+            small { color #777; }
+        </style>
+    </head>
+    <body>
+        <nav style="text-align: right; padding: 10px; background: #f4f4f4; border-bottom: 1px solid #ddd;">
+            {% if user.is_authenticated %}
+                <span>Hoşgeldin, <strong>{{ user.username }}</strong>!</span>
+                <a href="{% url 'post_new' %}" style="margin-left: 15px;">(+) Yeni Yazı Ekle</a>
+                <form action="{% url 'logout' %}" method="POST" style="display: inline; margin-left: 15px;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; padding:0; color: #007bff; text-decoration:underline; cursor:pointer; font-size: 1em;">
+                        Çıkış Yap
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Giriş Yap</a>
+                <a href="{% url 'signup' %}" style="margin-left: 15px;">Kayıt Ol</a>
+            {% endif %}
+        </nav>
+        
+        <h1>Hoş Geldiniz!</h1>
+        <hr>
+
+        {% for post in posts %}
+            <article>
+                <h2>
+                    <a href="{% url 'post_detail' post.pk %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+
+                <p>{{ post.content }}</p>
+                <small>Yayınlanma Tarihi: {{ post.created_at }}</small>
+                <small style="margin-left: 10px; font-weight: bold;">
+                    Yazar: {{ post.author.username }}
+                </small>
+            </article>
+        {% endfor %}
+    </body>
+</html>

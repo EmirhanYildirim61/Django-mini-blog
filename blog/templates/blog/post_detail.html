@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ post.title }}</title>
+
+        <style>
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; }
+            h1 { color: #333; }
+            p { font-size: 1.1em; }
+            small { color #777; }
+            .back-link { display: block; margin-top: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>{{ post.title }}</h1>
+        <small>Yayınlanma Tarihi: {{ post.created_at }}</small>
+        <small style="margin-left: 10px; font-weight: bold;">
+            Yazar: {{ post.author.username }}
+        </small>
+        <hr>
+
+        <p>{{ post.content }}</p>
+
+        <hr>
+
+        <a href="{% url 'post_edit' post.pk %}" style="display:inline-block; padding: 10px 15px; background: #ffc107; color: #333; text-decoration: none; border-radius: 5px;">
+            Bu Yazıyı Düzenle
+        </a>
+
+        <a href="{% url 'post_delete' post.pk %}" style="display:inline-block; padding: 10px 15px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px; margin-left: 10px;">
+            Bu Yazıyı Sil
+        </a>
+
+        <a href="{% url 'post_list' %}" class="back-link">&larr; Tüm yazılara geri dön</a>
+    </body>
+</html>
