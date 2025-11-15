@@ -10,6 +10,7 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+    source_url = models.URLField(max_length=200, unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.title
